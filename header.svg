@@ -1,0 +1,89 @@
+<svg viewBox="0 0 820 340" width="820" height="340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Terminal running ysa.sh">
+  <style>
+    .term { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 16px; }
+    .title { font-family: "SFMono-Regular", Consolas, Menlo, monospace; font-size: 13px; fill: #8A8494; }
+    .prompt { fill: #7B61FF; font-weight: 600; }
+    .cmd { fill: #F3E5D0; }
+    .out { fill: #B9AFC7; }
+    .hl { fill: #F3E5D0; font-weight: 600; }
+    .accent { fill: #7B61FF; }
+    .ok { fill: #7FD8A4; }
+
+    /* typing effect: each line is revealed with steps() */
+    .type rect { animation-timing-function: steps(30, end); animation-fill-mode: forwards; }
+    #t1 rect { animation: reveal 1.1s 0.4s forwards steps(24, end); }
+    #t2 rect { animation: reveal 1.6s 3.4s forwards steps(34, end); }
+    #t3 rect { animation: reveal 1.3s 7.2s forwards steps(28, end); }
+
+    .appear { opacity: 0; animation: pop 0.01s forwards; }
+    #o1 { animation-delay: 2.1s; }
+    #o2a { animation-delay: 5.6s; }
+    #o2b { animation-delay: 6.1s; }
+    #o2c { animation-delay: 6.6s; }
+    #o3 { animation-delay: 9.0s; }
+    #lastline { animation-delay: 9.6s; }
+
+    @keyframes reveal { from { width: 0; } to { width: 640px; } }
+    @keyframes pop { to { opacity: 1; } }
+
+    .cursor { fill: #7B61FF; animation: blink 1s steps(1, end) infinite; }
+    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .type rect { animation: none; width: 640px; }
+      .appear { animation: none; opacity: 1; }
+      .cursor { animation: none; }
+    }
+  </style>
+
+  <!-- terminal window -->
+  <rect x="10" y="10" width="800" height="320" rx="14" fill="#16121F" stroke="#2B2438" stroke-width="1.5"/>
+  <!-- top bar -->
+  <rect x="10" y="10" width="800" height="40" rx="14" fill="#1E1830"/>
+  <rect x="10" y="36" width="800" height="14" fill="#1E1830"/>
+  <circle cx="36" cy="30" r="6" fill="#FF5F57"/>
+  <circle cx="58" cy="30" r="6" fill="#FEBC2E"/>
+  <circle cx="80" cy="30" r="6" fill="#28C840"/>
+  <text x="410" y="35" text-anchor="middle" class="title">ysa@nomad — ~/ysa.sh</text>
+
+  <!-- line 1: whoami -->
+  <g class="term">
+    <clipPath id="t1"><rect x="34" y="70" height="24" width="0"/></clipPath>
+    <g clip-path="url(#t1)">
+      <text x="34" y="88"><tspan class="prompt">$ </tspan><tspan class="cmd">whoami</tspan></text>
+    </g>
+    <g id="o1" class="appear">
+      <text x="34" y="116" class="out">ysa <tspan class="accent">·</tspan> senior frontend dev <tspan class="accent">·</tspan> indie maker <tspan class="accent">·</tspan> content creator</text>
+    </g>
+
+    <!-- line 2: stack -->
+    <clipPath id="t2"><rect x="34" y="140" height="24" width="0"/></clipPath>
+    <g clip-path="url(#t2)">
+      <text x="34" y="158"><tspan class="prompt">$ </tspan><tspan class="cmd">echo $STACK $EXPERIENCE</tspan></text>
+    </g>
+    <g id="o2a" class="appear">
+      <text x="34" y="186" class="out"><tspan class="hl">Vue.js</tspan> + <tspan class="hl">TypeScript</tspan>  <tspan class="accent">|</tspan>  10+ years building frontends</text>
+    </g>
+    <g id="o2b" class="appear">
+      <text x="34" y="210" class="out">React Native <tspan class="accent">|</tspan> Node.js <tspan class="accent">|</tspan> Applied AI (LLMs, agents)</text>
+    </g>
+    <g id="o2c" class="appear">
+      <text x="34" y="234" class="out ok">✓ my own apps shipped to production</text>
+    </g>
+
+    <!-- line 3: run -->
+    <clipPath id="t3"><rect x="34" y="258" height="24" width="0"/></clipPath>
+    <g clip-path="url(#t3)">
+      <text x="34" y="276"><tspan class="prompt">$ </tspan><tspan class="cmd">chmod +x ideas.sh &amp;&amp; ./ideas.sh</tspan></text>
+    </g>
+    <g id="o3" class="appear">
+      <text x="34" y="302" class="out">compiling the next idea<tspan class="accent">...</tspan> <tspan class="ok">█████████░</tspan> 90%</text>
+    </g>
+
+    <!-- final prompt with cursor -->
+    <g id="lastline" class="appear">
+      <text x="720" y="302"><tspan class="prompt">$</tspan></text>
+      <rect class="cursor" x="736" y="288" width="10" height="18"/>
+    </g>
+  </g>
+</svg>
